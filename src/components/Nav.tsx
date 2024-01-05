@@ -1,6 +1,9 @@
+"use client";
+import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 const Nav = () => {
+  const { user, isLoaded } = useUser();
   return (
     <header>
       <nav
@@ -12,7 +15,12 @@ const Nav = () => {
             Next.js Authentication
           </a>
         </div>
-        <Link href="/dashboard">Dashboard</Link>
+        {isLoaded && user && (
+          <>
+            <Link href="/dashboard">Dashboard</Link>
+            <UserButton afterSignOutUrl="/" />
+          </>
+        )}
       </nav>
     </header>
   );
