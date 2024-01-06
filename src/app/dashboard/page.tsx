@@ -26,8 +26,13 @@ const DashboardPage = async () => {
       name: formData.get("name"),
     });
 
+    if (!userId) {
+      return;
+    }
+
+    const newRecord = { ...parsedForm, userId };
     const xataClient = getXataClient();
-    await xataClient.db.folders.create(parsedForm);
+    await xataClient.db.folders.create(newRecord);
     revalidatePath("/");
   }
   return (

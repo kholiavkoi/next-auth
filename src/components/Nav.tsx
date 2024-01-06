@@ -16,10 +16,10 @@ const Nav = () => {
           </a>
         </div>
         {isLoaded && user && (
-          <>
+          <div className="flex items-center gap-2">
             <Link href="/dashboard">Dashboard</Link>
             <UserButton afterSignOutUrl="/" />
-          </>
+          </div>
         )}
       </nav>
     </header>
